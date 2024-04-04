@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { strategies } = require("passport");
 const User = new mongoose.Schema({
     firstName:{
         type : String,
@@ -7,6 +8,11 @@ const User = new mongoose.Schema({
     lastName : {
         type : String,
         required : false,
+    },
+    password : {
+        type : String,
+        required : true,
+
     },
     email : {
         type : String,
@@ -27,9 +33,14 @@ const User = new mongoose.Schema({
     subcribesArtist :{
         type : String,
         default : "",
+    },
+    loggedIn :{
+        type : Boolean,
+        default : false
     }
+
 });
 
-const userModel = mongoose.Model("User",User)
+const userModel = mongoose.model("User",User)
 
 module.exports=userModel
